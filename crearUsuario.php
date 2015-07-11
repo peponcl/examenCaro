@@ -20,36 +20,21 @@ include( "modulos/PHPMailer/PHPMailerAutoload.php");
 
             <?php
             if ($_POST) {
-                $oUser = new Usuario();
-                $oUser->nombre = $_POST['nombre'];
-                $oUser->apellido = $_POST['apellido'];
-                $oUser->email = $_POST['email'];
-                $oUser->usuario = $_POST['usuario'];
-                $oUser->clave = md5($_POST['clave']);
-                //dumpo($oUser);
+                $oUser = new Usuarios();
+                $oUser->login_usuario = $_POST['login_usuario'];
+                $oUser->pass_usuario = md5($_POST['pass_usuario']);
+                $oUser->nombre_usuario = $_POST['nombre_usuario'];
+                $oUser->apellido_usuario = $_POST['apellido_usuario'];
+                $oUser->correo_usuario = $_POST['correo_usuario'];
+                $oUser->edad_usuario = $_POST['edad_usuario'];
+                $oUser->id_perfil = $_POST['id_perfil'];
+                $oUser->fechanacimiento_usuario = $_POST['fechanacimiento_usuario'];
+                
                 if ($oUser->crear()) {
                     echo "<div class=\"alert alert-success alert-dismissable\">";
                     echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
                     echo "Usuario Ingresado";
                     echo "</div>";
-
-                    $mail = new PHPMailer();
-                    $mail->IsSMTP();
-                    $mail->SMTPAuth = true;
-                    $mail->SMTPSecure = 'tls';
-                    $mail->Host = 'smtp.gmail.com';
-                    $mail->Port = 587;
-                    $mail->Username = 'maur.ojeda@alumnos.duoc.cl';
-                    $mail->Password = 'maur.6023';
-                    $mail->SetFrom('mauriciojedab@gmail.com', 'Mauricio Ojeda');
-                    $mail->Subject = 'Inscripcion en Privalia';
-                    $mail->Body = 'Estimado' .$_POST['nombre'] . ' ' .$_POST['apellido'] .' bienvenido a  Privalia';
-                    $mail->AddAddress( $_POST['email']);
-                    if (!$mail->Send()) {
-                        echo 'Error: ' . $mail->ErrorInfo;
-                    } else {
-                        echo 'Mensaje enviado!';
-                    }
                 } else {
                     echo "<div class=\"alert alert-danger alert-dismissable\">";
                     echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
@@ -59,44 +44,65 @@ include( "modulos/PHPMailer/PHPMailerAutoload.php");
             }
             ?>
 
+            
+            
             <form action="crearUsuario.php"  method="post" id="form_usuario">
                 <p>Ingrese informaci&oacute;n para un nuevo usuario al sistema, todos los campos son obligatorios.</p>
                 <table class='table table-hover table-responsive table-bordered'>
                     <tr>
-                        <td>Nombre</td>
-                        <td><input type="text" class='form-control required text' name="nombre"></td>
-                    </tr>
-                    <tr>
-                        <td>Apellido</td>
-                        <td><input type="text" class='form-control required text' name='apellido'></td>
-                    </tr>
-                    <tr>
-                        <td>E-mail</td>
-                        <td><input type="text" class='form-control required text' name="email"></td>
-                    </tr>
-                    <tr>
                         <td>Usuario</td>
-                        <td><input type="text" class='form-control required text' name="usuario"></td>
+                        <td><input type="text" class='form-control required text' name="login_usuario"></td>
                     </tr>
                     <tr>
                         <td>Clave</td>
-                        <td><input type="text" class='form-control required text' name="clave"></td>
+                        <td><input type="password" class='form-control required text' name='pass_usuario'></td>
+                    </tr>
+                    <tr>
+                        <td>Nombre</td>
+                        <td><input type="text" class='form-control required text' name="nombre_usuario"></td>
+                    </tr>
+                    <tr>
+                        <td>Apellido</td>
+                        <td><input type="text" class='form-control required text' name="apellido_usuario"></td>
+                    </tr>
+                    <tr>
+                        <td>Correo</td>
+                        <td><input type="text" class='form-control required text' name="correo_usuario"></td>
+                    </tr>
+                    <tr>
+                        <td>Edad</td>
+                        <td><input type="number" class='form-control required text' name="edad_usuario"></td>
+                    </tr>
+                    <tr>
+                        <td>Perfil</td>
+                        <td><select class='form-control required' name="id_perfil">
+                                <option>Seleccione...</option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Consulta</option>
+                                <option value="3">Vendedor</option>
+                            </select></td>   
+                    </tr>
+                    <tr>
+                        <td>Fecha Nacimiento</td>
+                        <td><input type="date" class='form-control required text' name="fechanacimiento_usuario"></td>
                     </tr>
                 </table>
                 <input type="submit"  class="btn btn-default btn-primary" value="Crear">
             </form>
         </div>
         <script>
-            /*validacion de campos del usuario*/
+            /*validación de campos del usuario*/
             $('#form_usuario').validate({
                 messages: {
-                    nombre: "Ingrese su nombre",
-                    apellido: "Ingrese su apellido",
-                    email: "Ingrese su e-mail",
-                    usuario: "Ingrese su usuario",
-                    clave: "Ingrese su clave"}
+                    login_usuario: "Ingrese usuario",
+                    pass_usuario: "Ingrese clave",
+                    nombre_usuario: "Ingrese nombre",
+                    apellido_usuario: "Ingrese apellido",
+                    correo_usuario: "Ingrese correo",
+                    edad_usuario: "Ingrese edad",
+                    id_perfil: "Ingrese tipo de perfil",
+                    fechanacimiento_usuario: "Ingrese fecha de nacimiento"}
             });
         </script>
     </body>
 </html>
-
