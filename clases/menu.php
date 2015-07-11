@@ -2,15 +2,14 @@
 class Menu {
     private $snombre_menu;
     private $sdestino_menu;
-    private $ncodigo_perfil;
+    private $nid_perfil;
     private $tabla = 'menu';
 
     function __construct($snom, $sdest, $ncodp) {
         $this->snombre_menu = $snom;
         $this->sdestino_menu = $sdest;
-        $this->ncodigo_perfil = $ncodp;
+        $this->nid_perfil = $ncodp;
     }
-
   
     function nombre_menu() {
         return $this->snombre_menu;
@@ -21,19 +20,16 @@ class Menu {
     }
 
     function codigo_perfil() {
-        return $this->ncodigo_perfil;
+        return $this->nid_perfil;
     }
 
    function cargaMenuPorPerfil() {
        $db = dbconnect(); 
-       $query = "SELECT  nombre_menu, destino_menu FROM " . $this->tabla . " WHERE codigo_perfil =:perfil";
+       $query = "SELECT  nombre_menu, destino_menu FROM " . $this->tabla . " WHERE id_perfil =:perfil";
         $stmt = $db->prepare($query);
-        $stmt->bindParam(':perfil', $this->ncodigo_perfil);
+        $stmt->bindParam(':perfil', $this->nid_perfil);
         $stmt->execute();
        return $stmt;
     }
 
-    
-    
-    
 }

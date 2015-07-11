@@ -87,7 +87,7 @@ class Usuarios {
         }
     }
 
-    function buscarAdmin() {
+    function buscarUsuario() {
         $db = dbconnect();
         $query = 'SELECT nombre_usuario, apellido_usuario, id_perfil FROM ' . $this->tabla . ' where login_usuario=:usr and pass_usuario=:pwd';
         $stmt = $db->prepare($query);
