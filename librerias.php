@@ -4,7 +4,6 @@ include (PATHAPP . 'lib/util.php');
 include (PATHAPP . 'lib/db_constantes.php');
 include (PATHAPP . 'lib/db_funciones.php');
 include (PATHAPP . 'lib/scripts.php');
-include (PATHAPP . 'registro.php');
 include (PATHAPP . 'clases/menu.php');
 include (PATHAPP . 'clases/orden_compras.php');
 include (PATHAPP . 'clases/perfil.php');

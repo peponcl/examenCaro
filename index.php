@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 include ("librerias.php");
 ?>
 
@@ -13,11 +14,9 @@ include ("librerias.php");
     </head>
     <body>
         <div class="container">
-            <div class="row"  style="max-width: 330px; padding: 15px;  margin: 0 auto;">
+            <div class="row"  style="max-width: 330px; padding: 10px;  margin: 80 auto;">
+                <img src="images/image_u27.png" alt="LoTenemosTodo"/>
                 <form method="post" action="login.php" id="form_login">
-                    <div class="navbar-brand">
-                        <img src="images/image_u27.png" alt="LoTenemosTodo"/>
-                    </div>
                     <?php
                     if ($error) {
                         echo "<div class=\"alert alert-danger alert-dismissable\">";
@@ -32,8 +31,8 @@ include ("librerias.php");
                     <div class="form-group">
                         <input type="password" name='input_clave' id='input_clave' class="form-control text required" placeholder="Clave">
                     </div>
-                    <a href="registro.php" name='registro'>Registrarse</a>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+                    <a href="registro.php">Registrar usuario</a>
                 </form>
             </div>
         </div>

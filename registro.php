@@ -70,6 +70,7 @@ include ("librerias.php");
                     <tr>
                         <td>Perfil</td>
                         <td><select class='form-control required' name="id_perfil">
+                                <option> </option>
                                 <option value="2">Consulta</option>
                                 <option value="3">Vendedor</option>
                             </select></td>   
@@ -80,6 +81,7 @@ include ("librerias.php");
                     </tr>
                 </table>
                 <input type="submit"  class="btn btn-default btn-primary" value="Crear">
+                <input type="button" class="btn btn-default btn-primary" value="Volver" onclick="history.back(-1)" />
             </form>
         </div>
         <script>
