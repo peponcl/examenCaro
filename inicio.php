@@ -17,8 +17,8 @@ include ("librerias.php");
                 <h2>Bienvenido <?php echo($_SESSION['nombre'].' '.$_SESSION['apellido']); ?></h2>
                 <p><br>Este es el sistema de la importadora "Lo Tenemos Todo". <br>
            </div>
-            <?php 
-           /* dumpo($_SESSION);
+           <?php /*
+            dumpo($_SESSION);
             
             dumpo(filter_input( INPUT_SERVER, 'nombre', FILTER_UNSAFE_RAW, FILTER_NULL_ON_FAILURE ));
             
