@@ -13,13 +13,10 @@ include ("librerias.php");
         <?php include 'menu.php'; ?>
         <div class="container">
             <div class="jumbotron">
+                <td>Fecha y Hora:<input type='datetime'></td>
                 <h2>Bienvenido <?php echo($_SESSION['nombre'].' '.$_SESSION['apellido']); ?></h2>
-                <p><br>Este es el sistema de administraci&oacute;n del sitio Privalia. <br>
-                    Privalia es una sitio de outlet online de moda.<br><br>
-                    Aqu&iacute; encontrar&aacute;s el ingreso, eliminaci&oacute;n o modificaci&oacute;n de <br> 
-                    Usuario, Administrador, Producto y Categor&iacute;a. <br><br>
-                    Para salir de la administraci&oacute;n, cierre sesi&oacute;n en el bot&oacute;n superior derecho.</p>
-            </div>
+                <p><br>Este es el sistema de la importadora "Lo Tenemos Todo". <br>
+           </div>
             <?php 
            /* dumpo($_SESSION);
             

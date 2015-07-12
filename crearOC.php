@@ -19,32 +19,21 @@ include ("librerias.php");
 
             <?php
             if ($_POST) {
-                $target_path = $_SERVER['DOCUMENT_ROOT']."/importadora/files/orden_compra/";
-                $target_path = $target_path . basename($_FILES['foto']['name']);
-                if (move_uploaded_file($_FILES['foto']['tmp_name'], $target_path)) {
-                    true;
-                } else {
-                    echo "<div class=\"alert alert-danger alert-dismissable\">";
-                    echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
-                    echo "No ha sido posible subir la foto del Producto";
-                    echo "</div>";
-                }
- /* MODIFICAR  $oProd = new productos();
-                $oProd->nombre = $_POST['nombre'];
-                $oProd->descripcion = $_POST['descripcion'];
-                $oProd->foto = $target_path;
-                $oProd->cantidad = $_POST['cantidad'];
-                $oProd->precio = $_POST['precio'];
-                $oProd->idcategoria = $_POST['idcategoria'];  */
-                if ($oProd->crear()) {
+                $oOC = new Orden_compras();
+                $oOC->fecha_emision = $_POST['login_usuario'];
+                $oOC->total_oc = $_POST['total_oc'];
+                $oOC->estado = $_POST['nombre_usuario'];
+                $oOC->id_usuario = $_POST['id_usuario'];
+         
+                if ($oOC->crear()) {
                     echo "<div class=\"alert alert-success alert-dismissable\">";
                     echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
-                    echo "Producto Ingresado";
+                    echo "Orden de compra Ingresada";
                     echo "</div>";
                 } else {
                     echo "<div class=\"alert alert-danger alert-dismissable\">";
                     echo "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>";
-                    echo "No ha sido posible ingresar el Producto";
+                    echo "No ha sido posible ingresar la orden de compra";
                     echo "</div>";
                 }
             }
@@ -53,54 +42,33 @@ include ("librerias.php");
                 <p>Ingrese informaci&oacute;n para la creaci&oacute;n de una Orden de Compra.</p>
                 <table class='table table-hover table-responsive table-bordered'>
                     <tr>
-                        <td>Nombre</td>
-                        <td><input type="text" class='form-control required text' name="nombre"></td>
+                        <td>Fecha emisi&oacute;n</td>
+                        <td><input type="date" class='form-control required date' name="fecha_emision"></td>
                     </tr>
                     <tr>
-                        <td>Descripci&oacute;n</td>
-                        <td><input type="text" class='form-control required text' name='descripcion'></td>
+                        <td>Total Orden de Compra</td>
+                        <td><input type="number" class='form-control required number' name='total_oc'></td>
                     </tr>
                     <tr>
-                        <td>Foto</td>
-                        <td><input type="file" class='form-control required file' name="foto" id="foto"></td>
+                        <td>Estado</td>
+                        <td><input type="text" class='form-control required text' name="estado"></td>
                     </tr>
                     <tr>
-                        <td>Cantidad</td>
-                        <td><input type="text" class='form-control required text' name="cantidad"></td>
-                    </tr>
-                    <tr>
-                        <td>Precio</td>
-                        <td><input type="text" class='form-control required text' name="precio"></td>
-                    </tr>
-                    <tr>
-                        <td>Categor&iacute;a</td>
-                        <td>
-                            <?php
-                            $oCat = new Categoria();
-                            $stmt = $oCat->leer();
-                            echo '<select class="form-control" name="idcategoria">';
-                            echo '<option>Seleccione...</option>';
-                            while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                extract($fila);
-                                echo "<option value='{$idcategorias}'>{$nombre}</option>";
-                            }
-                            echo'</select>';
-                            ?>
-                        </td>
+                        <td>Usuario</td>
+                        <td><input type="text" class='form-control required text' name="id_usuario"></td>
                     </tr>
                 </table>
                 <input type="submit"  class="btn btn-default btn-primary" value="Crear">
             </form>
         </div>
         <script>
-            /*validacion de campos del producto*/
-            $('#form_producto').validate({
+            /*validacion de campos de la orden de compra*/
+            $('#form_oc').validate({
                 messages: {
-                    nombre: "Ingrese el nombre del producto",
-                    descripcion: "Ingrese la descripci&oacute;n",
-                    foto: "Seleccione una foto para cargar",
-                    cantidad: "Ingresa la cantidad de productos que hay en stock",
-                    precio: "Ingrese el precio del producto"}
+                    fecha_emision: "Ingrese una fecha de emisi&oacute;n",
+                    total_oc: "Ingrese el total de la orden de compra",
+                    estado: "Ingrese un estado (Emitida, Cerrada, Anulada)",
+                    id_usuario: "Ingresa un id usuario"}
             });
         </script>
     </body>

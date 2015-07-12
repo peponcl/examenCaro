@@ -16,7 +16,7 @@ class Productos{
         $this->nid_tipoProducto=$nidtipo;
     }
 	
-    function ide() {
+    function id() {
         return $this->nid_producto;
     }
     function descripcion() {

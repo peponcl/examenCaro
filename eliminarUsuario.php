@@ -1,8 +1,12 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+include ("librerias.php");
+if($_POST){
+$oUsuario = new usuarios();
+$oUsuario->idusuario = $_POST['idusuario'];
+ if( $oUsuario->eliminar() ){
+        return true;
+    }else{
+        return false;
+    }
+}
+?>

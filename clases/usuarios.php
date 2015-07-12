@@ -24,7 +24,7 @@ class Usuarios {
         $this->ffechanacimiento_usuario = $fnacim;
     }
 
-    function ide() {
+    function id() {
         return $this->nidusuario;
     }
 
@@ -102,7 +102,7 @@ class Usuarios {
 
     function buscarporId() {
         $db = dbconnect();
-        $query = "SELECT login_usuario, pass_usuario, nombre_usuario, apellido_usuario, correo_usuario, edad_usuario, id_perfil, fechanacimiento_usuario FROM " . $this->tabla . " WHERE id_usuario= ?";
+        $query = "SELECT login_usuario, pass_usuario, nombre_usuario, apellido_usuario, correo_usuario, edad_usuario, id_perfil, fechanacimiento_usuario FROM " . $this->tabla . " WHERE idusuario= ?";
         $this->stmt = $db->prepare($query);
         $this->stmt->bindParam(1, $this->idadministrador);
         $this->stmt->execute();
@@ -119,7 +119,7 @@ class Usuarios {
 
     function leer() {
         $db = dbconnect();
-        $query = "SELECT id_usuario, login_usuario, pass_usuario, nombre_usuario, apellido_usuario, correo_usuario, edad_usuario, id_perfil, fechanacimiento_usuario FROM " . $this->tabla;
+        $query = "SELECT idusuario, login_usuario, pass_usuario, nombre_usuario, apellido_usuario, correo_usuario, edad_usuario, id_perfil, fechanacimiento_usuario FROM " . $this->tabla;
         $this->stmt = $db->prepare($query);
         $this->stmt->execute();
         return $this->stmt;
@@ -146,9 +146,9 @@ class Usuarios {
 
     function eliminar() {
         $db = dbconnect();
-        $query = "DELETE FROM " . $this->tabla . " WHERE id_usuario = ? ";
+        $query = "DELETE FROM " . $this->tabla . " WHERE idusuario = ? ";
         $this->stmt = $db->prepare($query);
-        $this->stmt->bindParam(1, $this->id_usuario);
+        $this->stmt->bindParam(1, $this->idusuario);
         if ($this->stmt->execute()) {
             return true;
         } else {
@@ -158,7 +158,7 @@ class Usuarios {
 
     function modificar() {
         $db = dbconnect();
-        $query = " UPDATE " . $this->tabla . " SET login_usuario =?, pass_usuario =?, nombre_usuario = ?, apellido_usuario = ?, correo_usuario = ?, edad_usuario=?, id_perfil =?, fechanacimiento_usuario =? WHERE id_usuario = ?";
+        $query = " UPDATE " . $this->tabla . " SET login_usuario =?, pass_usuario =?, nombre_usuario = ?, apellido_usuario = ?, correo_usuario = ?, edad_usuario=?, id_perfil =?, fechanacimiento_usuario =? WHERE idusuario = ?";
         $this->stmt = $db->prepare($query);
         $this->stmt->bindParam(1, $this->login_usuario);
         $this->stmt->bindParam(2, $this->pass_usuario);
@@ -168,7 +168,7 @@ class Usuarios {
         $this->stmt->bindParam(6, $this->edad_usuario);
         $this->stmt->bindParam(7, $this->id_perfil);
         $this->stmt->bindParam(8, $this->fechanacimiento_usuario);
-        $this->stmt->bindParam(9, $this->id_usuario);
+        $this->stmt->bindParam(9, $this->idusuario);
         if ($this->stmt->execute()) {
             return true;
         } else {

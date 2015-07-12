@@ -20,7 +20,7 @@ class tipo_producto {
     }
     
     function leer() {
-        $query = "SELECT id_tipoproducto, descripcion_tipo FROM
+        $query = "SELECT id_tipoProducto, descripcion_tipo FROM
                     " . $this->tabla . " ORDER BY descripcion_tipo";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();

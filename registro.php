@@ -10,10 +10,10 @@ include ("librerias.php");
         <title><?= TITULOAPP; ?></title>
     </head>
     <body>
-        <?php include 'menu.php'; ?>
         <div class="container">
             <h1></h1>
-            <h2>Crear Usuario</h2>
+            <h2>Registro de Usuario</h2>
+
             <?php
             if ($_POST) {
                 $oUser = new Usuarios();
@@ -39,8 +39,9 @@ include ("librerias.php");
                 }
             }
             ?>
+            
             <form action="crearUsuario.php"  method="post" id="form_usuario">
-                <p>Ingrese informaci&oacute;n para un nuevo usuario al sistema, todos los campos son obligatorios.</p>
+                <p>Para el registro ingrese la siguiente informaci&oacute;n, todos los campos son obligatorios.</p>
                 <table class='table table-hover table-responsive table-bordered'>
                     <tr>
                         <td>Usuario</td>
@@ -48,7 +49,7 @@ include ("librerias.php");
                     </tr>
                     <tr>
                         <td>Clave</td>
-                        <td><input type="password" class='form-control required pass' name='pass_usuario'></td>
+                        <td><input type="password" class='form-control required text' name='pass_usuario'></td>
                     </tr>
                     <tr>
                         <td>Nombre</td>
@@ -64,13 +65,11 @@ include ("librerias.php");
                     </tr>
                     <tr>
                         <td>Edad</td>
-                        <td><input type="number" class='form-control required number' name="edad_usuario"></td>
+                        <td><input type="number" class='form-control required text' name="edad_usuario"></td>
                     </tr>
                     <tr>
                         <td>Perfil</td>
                         <td><select class='form-control required' name="id_perfil">
-                                <option>Seleccione...</option>
-                                <option value="1">Administrador</option>
                                 <option value="2">Consulta</option>
                                 <option value="3">Vendedor</option>
                             </select></td>   

@@ -16,7 +16,7 @@ class Orden_compras{
         $this->nid_usuario=$nidusuario;
     }
 	
-    function ide() {
+    function id() {
         return $this->nid_oc;
     }
     function fecha_emision() {
@@ -47,7 +47,6 @@ class Orden_compras{
         }
     }
 
-  
     function leer() {
         $db = dbconnect();
         $query = "SELECT id_oc, fecha_emision, total_oc, estado, id_usuario FROM " . $this->tabla . " ORDER BY id_oc";
@@ -68,7 +67,6 @@ class Orden_compras{
         $this->sestado = $fila['estado'];
         $this->nid_usuario = $fila['id_usuario'];
     }
-        
         
     function crear() {
         $db = dbconnect();

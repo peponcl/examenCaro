@@ -13,31 +13,31 @@ include ("librerias.php");
         <?php include 'menu.php'; ?>
         <div class="container">
             <h1></h1>
-            <h2>Editar Orden de Compra</h2>
+            <h2>Editar Productos</h2>
             <form method="post" action="">
-                <p>Lista de orden de compra ingresados al sistema.  Presione en la acci&oacute;n que desea realizar.</p>
+                <p>Lista de productos ingresados al sistema.  Presione en la acci&oacute;n que desea realizar.</p>
                 <table class='table table-hover table-responsive table-bordered'>
                     <tr>
-                        <td align="center">id</td>
-                        <td>Fecha emisi&oacute;n</td>
-                        <td>Total Orden de Compra</td>
-                        <td>Estado</td>
-                        <td>Usuario</td>
+                        <td align="center">Id</td>
+                        <td>Descripci&oacute;n</td>
+                        <td>Precio</td>
+                        <td>Unidad</td>
+                        <td>Tipo Producto</td>
                         <td align="center">Acciones</td>
                     </tr>
                     <?php
-                    $oOC = new Orden_compras();
-                    $conteo = $oOC->leer();
+                    $oprod = new productos();
+                    $conteo = $oprod->leer();
                     while ($fila = $conteo->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>";
-                        echo "<td align='center'>$fila[id_oc]</td>";
-                        echo "<td>$fila[fecha_emision]</td>";
-                        echo "<td>$fila[total_oc]</td>";
-                        echo "<td>$fila[estado]</td>";
-                        echo "<td>$fila[id_usuario]</td>";
+                        echo "<td align='center'>$fila[id_producto]</td>";
+                        echo "<td>$fila[descripcion]</td>";
+                        echo "<td>$fila[precio]</td>";
+                        echo "<td>$fila[unidad]</td>";
+                        echo "<td>$fila[id_tipoProducto]</td>";
                         echo "<td width='1%' align='center' nowrap>";
-                        echo "<a href='editarOC.php?id=$fila[id_oc]' class='btn btn-info left-margin' data-toggle='tooltip' data-placement='bottom' title='Editar Orden de Compra'> <span class='glyphicon glyphicon-pencil'> </span></a> ";
-                        echo " <a elimina-id='$fila[id_oc]'  prod-eliminar='$fila[fecha_emision]'  class='btn btn-danger elimina-objecto' class='btn btn-info left-margin' data-toggle='tooltip' data-placement='bottom' title='Eliminar Orden de Compra'><span class='glyphicon glyphicon-trash'> </span></a>";
+                        echo "<a href='editarProducto.php?id=$fila[id_producto]' class='btn btn-info left-margin' data-toggle='tooltip' data-placement='bottom' title='Editar Producto'> <span class='glyphicon glyphicon-pencil'> </span></a> ";
+                        echo " <a elimina-id='$fila[id_producto]'  prod-eliminar='$fila[descripcion]'  class='btn btn-danger elimina-objecto' class='btn btn-info left-margin' data-toggle='tooltip' data-placement='bottom' title='Eliminar Producto'><span class='glyphicon glyphicon-trash'> </span></a>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -56,8 +56,8 @@ include ("librerias.php");
                 var nombreEliminar = $(this).attr('prod-eliminar');
                 var q = confirm('Esta seguro, de eliminar a: ' + nombreEliminar +' ?');
                 if (q === true) {
-                    $.post('eliminarOC.php', {
-                        id_oc: id
+                    $.post('eliminarProducto.php', {
+                        id_producto: id
                     }, function (data) {
                         location.reload();
                     }).fail(function () {

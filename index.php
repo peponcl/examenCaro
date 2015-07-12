@@ -17,7 +17,7 @@ include ("librerias.php");
             <div class="row"  style="max-width: 330px; padding: 15px;  margin: 0 auto;">
                 <form method="post" action="login.php" id="form_login">
                     <div class="navbar-brand">
-                        <img src="images/image_u27.png" alt="Privalia"/>
+                        <img src="images/image_u27.png" alt="LoTenemosTodo"/>
                     </div>
                     <?php
                     if ($error) {
@@ -33,6 +33,7 @@ include ("librerias.php");
                     <div class="form-group">
                         <input type="password" name='input_clave' id='input_clave' class="form-control text required" placeholder="Clave">
                     </div>
+                    <a href="registro.php" name='registro'>Registrarse</a>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
                 </form>
             </div>
