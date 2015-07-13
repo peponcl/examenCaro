@@ -1,5 +1,5 @@
 <?php
-include 'clases/menu.php';
+//include 'clases/menu.php';
 
 $menu = new Menu("", "", $_SESSION['id_perfil']);
 $stmt = $menu->cargaMenuPorPerfil();
