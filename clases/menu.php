@@ -1,5 +1,5 @@
 <?php
-class Menu {
+class Menu{
     private $snombre_menu;
     private $sdestino_menu;
     private $nid_perfil;
